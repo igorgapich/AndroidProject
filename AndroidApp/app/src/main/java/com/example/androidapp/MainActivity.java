@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         ImageView ivAvatar = findViewById(R.id.imageView);
-        String url = "https://armyinform.com.ua/wp-content/uploads/2022/09/f_19230554251646029050.jpg";
+//        String url = "https://armyinform.com.ua/wp-content/uploads/2022/09/f_19230554251646029050.jpg";
+        String url = "http://10.0.2.2:5094/images/1.jpg";
         Glide.with(this)
                 .load(url)
                 .apply(new RequestOptions().override(400))
