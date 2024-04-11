@@ -3,7 +3,7 @@
 Create docker hub repository - publish
 ```
 docker build -t pv116-api . 
-docker run -it --rm -p 5559:8080 --name pv116_container pv116-api
+docker run -it --rm -p 5085:8080 --name pv116_container pv116-api
 docker run -d --restart=always --name pv116_container -p 5085:8080 pv116-api
 docker ps -a
 docker stop pv116_container
