@@ -5,7 +5,9 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebKrot", "WebKrot\WebKrot.csproj", "{2773B7FB-2475-42E0-AAE2-6391E3F5DDC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{73D561CE-EB7C-4465-9904-1CA80BE03A5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{73D561CE-EB7C-4465-9904-1CA80BE03A5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{9EAC6A92-725B-439D-9966-704D42F7A33A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{73D561CE-EB7C-4465-9904-1CA80BE03A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73D561CE-EB7C-4465-9904-1CA80BE03A5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73D561CE-EB7C-4465-9904-1CA80BE03A5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EAC6A92-725B-439D-9966-704D42F7A33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EAC6A92-725B-439D-9966-704D42F7A33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EAC6A92-725B-439D-9966-704D42F7A33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EAC6A92-725B-439D-9966-704D42F7A33A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
