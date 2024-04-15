@@ -24,4 +24,8 @@
 		<!-- Other items -->
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Controllers\" />
+	</ItemGroup>
+
 </Project>
