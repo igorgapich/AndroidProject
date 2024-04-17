@@ -1,6 +1,9 @@
 using Microsoft.Extensions.FileProviders;
 using Infrastructure;
 using Core;
+using Core.Entities.Identity;
+using Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +24,18 @@ builder.Services.AddValidator();
 builder.Services.AddAutoMapper();
 
 builder.Services.AddCustomService();
+
+builder.Services.AddIdentity<UserEntity, RoleEntity>(options =>
+{
+    options.Stores.MaxLengthForKeys = 128;
+    options.Password.RequireDigit = false;
+    options.Password.RequiredLength = 5;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireLowercase = false;
+})
+    .AddEntityFrameworkStores<DataBaseContext>()
+    .AddDefaultTokenProviders();
 
 var app = builder.Build();
 
@@ -46,5 +61,7 @@ app.UseStaticFiles(new StaticFileOptions
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.SeedData();
 
 app.Run();
