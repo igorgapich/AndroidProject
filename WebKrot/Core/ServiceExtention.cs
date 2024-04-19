@@ -12,6 +12,7 @@ namespace Core
         {
             service.AddScoped<ICategoryService, CategoryService>();
             service.AddScoped<IJwtTokenService, JwtTokenService>();
+            service.AddScoped<IFilesService, FilesService>();
         }
         public static void AddValidator(this IServiceCollection service)
         {
