@@ -9,26 +9,37 @@ namespace Core.Services
     {
         private readonly IMapper _mapper;
         private readonly IRepository<CategoryEntity> _categoryRepository;
+        private readonly IFilesService _filesService;
 
-        public CategoryService(IRepository<CategoryEntity> categoryRepository, IMapper mapper)
+        public CategoryService(IRepository<CategoryEntity> categoryRepository, IMapper mapper,
+            IFilesService filesService)
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
+            _filesService = filesService;
         }
 
         public async Task CreateAsync(CreateCategoryDTO createCategoryDTO)
         {
             var category = _mapper.Map<CategoryEntity>(createCategoryDTO);
+            if (createCategoryDTO.ImageFile != null)
+            {
+                category.ImagePath = await _filesService.SaveImage(createCategoryDTO.ImageFile!);
+            }
             await _categoryRepository.InsertAsync(category);
             await _categoryRepository.SaveAsync();
         }
 
         public async Task DeleteCategoryByIDAsync(int id)
         {
-            var categoryToDelete = await _categoryRepository.GetByIDAsync(id);
-            if (categoryToDelete != null)
+            var entity = await _categoryRepository.GetByIDAsync(id);
+            if (entity != null)
             {
-                await _categoryRepository.DeleteAsync(categoryToDelete);
+                if (entity.ImagePath != null)
+                {
+                    await _filesService.DeleteImage(entity.ImagePath);
+                }
+                await _categoryRepository.DeleteAsync(entity);
                 await _categoryRepository.SaveAsync();
             }
         }
@@ -36,6 +47,15 @@ namespace Core.Services
         public async Task EditAsync(EditCategoryDTO editCategoryDTO)
         {
             var category = _mapper.Map<CategoryEntity>(editCategoryDTO);
+            if (editCategoryDTO.ImageFile != null)
+            {
+                var entity = await _categoryRepository.GetByIDAsync(editCategoryDTO.Id);
+                if (entity.ImagePath != null)
+                {
+                    await _filesService.DeleteImage(entity.ImagePath);
+                }
+                category.ImagePath = await _filesService.SaveImage(editCategoryDTO.ImageFile!);
+            }
             await _categoryRepository.UpdateAsync(category);
             await _categoryRepository.SaveAsync();
         }
