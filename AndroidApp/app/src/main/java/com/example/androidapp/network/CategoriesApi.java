@@ -17,11 +17,11 @@ import retrofit2.http.PartMap;
 public interface CategoriesApi {
     // CALL це асинхронний метод
     // відправляє на сервер ліст
-    @GET("api/Category/CategoryGetAsync")
+    @GET("/api/Category/CategoryGetAsync")
     public Call<List<CategoryItemDTO>> list();
 
     @Multipart
     @POST("/api/category/createcategory")
-    public Call<CategoryItemDTO> create(@PartMap Map<String, RequestBody> params,
+    public Call<Void> create(@PartMap Map<String, RequestBody> params,
                                         @Part MultipartBody.Part image);
 }
