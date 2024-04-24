@@ -36,10 +36,10 @@ import retrofit2.Response;
 
 public class CategoryCreateActivity extends BaseActivity {
 
-    //запит на вивід фотографій
     private static final int PICK_IMAGE_REQUEST = 1;
     private String filePath;
     private ImageView ivSelectImage;
+
     TextInputLayout tlCategoryName;
     TextInputLayout tlCategoryDescription;
 
@@ -80,10 +80,12 @@ public class CategoryCreateActivity extends BaseActivity {
                 .apply(new RequestOptions().override(300))
                 .into(ivSelectImage);
     }
+
     public void openGallery(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -116,6 +118,7 @@ public class CategoryCreateActivity extends BaseActivity {
         }
         return null;
     }
+
     public void onClickCreateCategory(View view) {
         try {
             String name = tlCategoryName.getEditText().getText().toString().trim();
@@ -129,7 +132,7 @@ public class CategoryCreateActivity extends BaseActivity {
             if (filePath != null) {
                 File imageFile = new File(filePath);
                 RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), imageFile);
-                imagePart = MultipartBody.Part.createFormData("image", imageFile.getName(), requestFile);
+                imagePart = MultipartBody.Part.createFormData("imageFile", imageFile.getName(), requestFile);
             }
 
             ApplicationNetwork.getInstance()
